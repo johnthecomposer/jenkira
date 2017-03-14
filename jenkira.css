@@ -1,0 +1,14 @@
+/* custom css (edited in the admin control panel in the underscores theme) */
+
+body, button, table{font-family: Consolas, monaco, monospace; line-height: 30px;}
+table {margin-top: 50px; font-size: 90%; border-collapse: collapse; border-style: hidden;}
+table td {border: 1px solid grey; padding: 10px; white-space:pre-wrap; word-wrap:break-word; vertical-align: top;}
+
+.site-info{position: absolute; bottom: 10px; font-size: 0.8em}
+
+#primary-menu, .site-title, .site-description, .entry-title, .edit-link, aside{display: none;}
+#page{padding: 30px}
+#main, #deployments_container{background-color: white; margin: 30px 0; padding: 15px; width: 77%; float: left}
+#deployments_container{width: 20%;}
+#server_message{margin-left: 20px; font-style: italic}
+#deployments_container{float: right}
