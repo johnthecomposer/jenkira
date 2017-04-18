@@ -1,14 +1,60 @@
-/* custom css (edited in the admin control panel in the underscores theme) */
 
-body, button, table{font-family: Consolas, monaco, monospace; line-height: 30px;}
-table {margin-top: 50px; font-size: 90%; border-collapse: collapse; border-style: hidden;}
-table td {border: 1px solid grey; padding: 10px; white-space:pre-wrap; word-wrap:break-word; vertical-align: top;}
+body, button, table{font-family: Consolas, monaco, monospace; line-height: 30px; color: #123752;}
+/* hide unused elements */
+nav#site-navigation{display: none;}
+button{width: 150px;}
+table {margin: 0 0 0 0; font-size: 90%; border-collapse: collapse; border-style: hidden;}
+table td {border: 1px solid #e6e6e6; padding: 10px; margin: 0; white-space:pre-wrap; word-wrap:break-word; vertical-align: top;}
+a, a:visited, a:hover, a:active {color: inherit; text-decoration: none;}
+a:hover{color: #e6e6e6;}
 
-.site-info{position: absolute; bottom: 10px; font-size: 0.8em}
+.issue{}
+.issue.pending{background-color: tan;}
+.issue.verified{background-color: lightgreen}
+.site-title{display: none; font-size: 110%; margin-bottom: 0;}
+.site-description{display: none; margin-top: 0;}
+.site-info{position: absolute; bottom: 10px; left: 20px; font-size: 0.8em}
+.build.single{line-height: 20px; width: 90%; margin-top: 5px}
+.data_loading{display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 10px; background-color: grey;}
+.data_loading::before{content: "\200B";} /* add zero width space to loading animation dot divs */
+.data_loading.failure, .data_loading.success{position: absolute; margin-top: 11px; margin-left: 7px;}
+.data_loading.success{background-color: darkgreen;}
+.data_loading.failure{background-color: darkred;}
+.container_header{position: absolute; top: 10px; left: 10px;}
+.scheduled_task{padding: 5px; font-size: 80%; border-top: 1px solid #123752;}
+.lightgreen{background-color: lightgreen;}
+.tan{background-color: tan;}
+.lightblue{background-color: lightblue;}
+.darkgreen{background-color: darkgreen;}
+.darkred{background-color: darkred;}
+.build_queued,.affected_link{font-size: 80%;}
+.affected_link{display: block;}
+.running{background-color: white;}
+.jira_updated{background-color: lightblue;}
+.jenkins_unbuilt_links span{position: relative;}
 
-#primary-menu, .site-title, .site-description, .entry-title, .edit-link, aside{display: none;}
-#page{padding: 30px}
-#main, #deployments_container{background-color: white; margin: 30px 0; padding: 15px; width: 77%; float: left}
-#deployments_container{width: 20%;}
-#server_message{margin-left: 20px; font-style: italic}
-#deployments_container{float: right}
+#color_key{position: fixed; top: 15px; right: 30px; height: 30px; width: 85px; text-align: center; font-size: 80%;}
+#color_key_title{text-align: center;}
+#color_key div{}
+#jira_logo{height: 50px;}
+#jenkins_logo{height: 40px; margin-left: -80px;}
+#site-title{margin: 0;}
+#page{padding: 0 30px;}
+#primary{max-width: 75%;}
+#main,#deployments_container,#scheduled_tasks_container,#build_queue_container,#affected_links_container{display: none; background-color: #e6e6e6; padding: 12px; margin-top: 10px;}
+#affected_links_container{padding: 0; }
+#build_queue_container{display: block;}
+#main{width: 75%; float: left;}
+#deployments_container,#scheduled_tasks_container,#build_queue_container{float: right; width: 23%; padding: 10px; margin-right: 1%;}
+#scheduled_tasks_container,#build_queue_container,#affected_links_container{position: relative;}
+#scheduled_tasks,#build_queue,#affected_links{max-height: 400px; overflow-y: scroll; margin-top: 30px; padding: 12px;}
+#affected_links{background-color: #85a2bf; margin-top: 10px;}
+#build_queue{display: none; margin-top: 0;}
+#deployments button{background-color: tan;}
+#deployments button.verified{background-color: lightgreen;}
+#table_server_message{display: inline; position: relative; top: 15px; margin-left: 20px; height: 30px; font-style: italic; color: #e6e6e6;}
+#queue_server_message{margin-left: 15px; font-size: 80%;}
+#refresh_data{position: relative; width: 140px;}
+#unbuilt {}
+
+button:hover,#deployments button.verified:hover,#refresh_data:hover,#get_build_queue:hover{color: #e6e6e6; background-color: #123752;}

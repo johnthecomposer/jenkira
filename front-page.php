@@ -1,88 +1,69 @@
 <?php
-/* front-page.php */
-
 /**
- * The main template file.
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link https://codex.wordpress.org/Template_Hierarchy
- *
- * @package tickethelper_s
- */
+* The main template file.
+*
+* This is the most generic template file in a WordPress theme
+* and one of the two required files for a theme (the other being style.css).
+* It is used to display a page when nothing more specific matches a query.
+* E.g., it puts together the home page when no home.php file exists.
+*
+* @link https://codex.wordpress.org/Template_Hierarchy
+*
+* @package jenkira_underscores
+*/
+
+
 get_header();
+
 ?>
-    <!--
+    <!
         define ajaxurl -- usually in admin-header but needs to be available to non-admin users
         moved this from functions.php because it was being passed to the front end when an ajax call was made
         Fix: figure out a way to properly define ajaxurl without it being passed
     -->
     <script>var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>';</script>
 
-        <div id="primary" class="content-area">
+    <div id="color_key">
 
-        <div class="action_header"></div><button id="refresh_data">refresh data</button><div id="server_message"></div></div>
+        <div id="color_key_title">:key:</div>
 
-                <main id="main" class="site-main" role="main">
+        <div class="lightgreen">verified</div>
+
+        <div class="tan">unverified</div>
+
+        <div class="lightblue">queued</div>
+
+        <div class="darkgreen">deployed</div>
+
+        <div class="darkred">failed</div>
+
+    </div>
+
+    <div id="logo_container" title="(Jenkins + JIRA integration + UI for managing builds related to issues) === jenkira!">
+
+        <img class="logo_merge" id="jira_logo" title="jira logo" src="https://my-jira-domain/path-to-images/images/icon-jira-logo.png" alt="JIRA logo" data-aui-responsive-header-index="0">
+
+        <img class="logo_merge" id="jenkins_logo" title="mr. jenkins" src="https://jenkins.io/images/226px-Jenkins_logo.svg.png" alt="Jenkins logo" data-aui-responsive-header-index="0">
+
+    </div>
+
+                <div id="primary" class="content-area">
+
+        <div class="action_header"></div><button id="refresh_data">refresh data</button><div id="table_server_message"></div></div>
+
+                                <main id="main" class="site-main" role="main">
 
             <table id="unbuilt"></table>
 
-        <?php
-        /*
-        echo '<div class="issue-form-wrapper">';
-                echo '<h2>issue</h2>';
-                $issue_pod = pods('issue');
-                $issue_params = array('fields_only' => true, 'fields' => array('issue_id', 'issue_status', 'issue_changelists_ids', 'issue_links'));
-                echo $issue_pod->form($issue_params);
-                echo '<input type="submit" value="save" id="issue_form_submit" class="pods-form-submit-button">';
-                echo '</div>';
+            <div id="affected_links_container">
 
-                echo '<div class="changelist-form-wrapper">';
-                echo '<h2>changelist</h2>';
-                $changelist_pod = pods('changelist');
-                $changelist_params = array('fields_only' => true, 'fields' => array('changelist_id', 'changelist_issue_id', 'changelist_files'));
-                echo $changelist_pod->form($changelist_params);
-                echo '<input type="submit" value="save" id="changelist_form_submit" class="pods-form-submit-button">';
-                echo '</div>';
-        */
+                <button id="purge_all" class="purge all">purge all</button>
 
-                /* end jc_insert */
-                if ( have_posts() ) :
+                <div id="affected_links"></div>
 
-                        if ( is_home() && ! is_front_page() ) : ?>
-                                <header>
-                                        <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-                                </header>
+            </div>
 
-                        <?php
-                        endif;
-
-                        /* Start the Loop */
-                        while ( have_posts() ) : the_post();
-
-                                /*
-                                 * Include the Post-Format-specific template for the content.
-                                 * If you want to override this in a child theme, then include a file
-                                 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-                                 */
-                                get_template_part( 'template-parts/content', get_post_format() );
-
-                        endwhile;
-
-                        the_posts_navigation();
-
-
-                else :
-
-                        get_template_part( 'template-parts/content', 'none' );
-
-                endif; ?>
-
-                </main><!-- #main -->
-
+                                </main><!-- #main -->
 
         <div id="deployments_container">
 
@@ -92,8 +73,22 @@ get_header();
 
         </div>
 
-        </div><!-- #primary -->
+        <div id="scheduled_tasks_container">
+
+            <div class="container_header">Jenkins Scheduled Tasks</div>
+
+            <div id="scheduled_tasks"></div>
+
+        </div>
+
+        <div id="build_queue_container">
+
+            <button id="get_build_queue">get build queue</button><span id="queue_server_message"></span>
+
+            <div id="build_queue"></div>
+
+        </div>
+
+                </div><!-- #primary -->
 
 <?php
-get_sidebar();
-get_footer();
